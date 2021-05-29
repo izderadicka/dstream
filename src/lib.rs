@@ -66,10 +66,6 @@ where
         }
     }
 
-    // pub fn inner(self) -> S {
-    //     Box::into_inner(Pin::into_inner(self.inner_stream))
-    // }
-
     fn set_sleep(&mut self) {
         let time_to_wait = self.past_messages.front().map(|item| {
             let time_to_first = Instant::now().duration_since(item.1.ts);
