@@ -1,5 +1,3 @@
-#![feature(box_into_inner)]
-
 use futures::{Future, Stream};
 use linked_hash_map::LinkedHashMap;
 use std::{
