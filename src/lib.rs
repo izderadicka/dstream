@@ -89,6 +89,7 @@ where
         mut self: std::pin::Pin<&mut Self>,
         cx: &mut Context<'_>,
     ) -> Poll<Option<Self::Item>> {
+        if !self.input_finished {
         match Pin::new(&mut self.inner_stream).poll_next(cx) {
             Poll::Ready(Some(item)) => {
                 let (k, v) = item.split();
@@ -98,6 +99,7 @@ where
             }
             Poll::Ready(None) => self.input_finished = true,
             Poll::Pending => {}
+        }
         }
 
         if let Some(sleep) = self.sleep.as_mut() {

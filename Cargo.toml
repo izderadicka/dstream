@@ -1,6 +1,6 @@
 [package]
 name = "dstream"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
 authors = ["Ivan Zderadicka <ivan.zderadicka@gmail.com>"]
 description = "DelayedStream - delays items and drops same items coming within given interval "
