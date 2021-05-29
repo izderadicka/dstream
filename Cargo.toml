@@ -2,6 +2,19 @@
 name = "dstream"
 version = "0.1.0"
 edition = "2018"
+authors = ["Ivan Zderadicka <ivan.zderadicka@gmail.com>"]
+description = "DelayedStream - delays items and drops same items coming within given interval "
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/izderadicka/dstream"
+repository = "https://github.com/izderadicka/dstream"
+documentation = "https://docs.rs/dstream"
+categories = [ "asynchronous" ]
+keywords = [
+  "asynch",
+  "stream",
+  "tokio",
+  "futures"
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
