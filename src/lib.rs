@@ -90,16 +90,16 @@ where
         cx: &mut Context<'_>,
     ) -> Poll<Option<Self::Item>> {
         if !self.input_finished {
-        match Pin::new(&mut self.inner_stream).poll_next(cx) {
-            Poll::Ready(Some(item)) => {
-                let (k, v) = item.split();
-                self.past_messages.remove(&k); // have to remove key so new entry is at end of list
-                self.past_messages.insert(k, TimedItem::new(v));
-                self.set_sleep();
+            match Pin::new(&mut self.inner_stream).poll_next(cx) {
+                Poll::Ready(Some(item)) => {
+                    let (k, v) = item.split();
+                    self.past_messages.remove(&k); // have to remove key so new entry is at end of list
+                    self.past_messages.insert(k, TimedItem::new(v));
+                    self.set_sleep();
+                }
+                Poll::Ready(None) => self.input_finished = true,
+                Poll::Pending => {}
             }
-            Poll::Ready(None) => self.input_finished = true,
-            Poll::Pending => {}
-        }
         }
 
         if let Some(sleep) = self.sleep.as_mut() {
