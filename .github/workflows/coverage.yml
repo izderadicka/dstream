@@ -1,0 +1,34 @@
+name: Coverage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Rust nightly
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: default
+        toolchain: nightly
+        default: true
+        components: llvm-tools-preview
+    
+    - name: Install other dependencies
+      run: cargo install rustfilt \
+           cargo install cargo-binutils \
+           sudo apt install jq
+    
+    - uses: actions/checkout@v2
+
+    - name: Calculate coverage
+      run: coverage.sh
+    
