@@ -23,9 +23,10 @@ jobs:
         components: llvm-tools-preview
     
     - name: Install other dependencies
-      run: cargo install rustfilt && \
-           cargo install cargo-binutils && \
-           sudo apt install jq
+      run: |
+        cargo install rustfilt 
+        cargo install cargo-binutils
+        sudo apt install jq
     
     - uses: actions/checkout@v2
 
