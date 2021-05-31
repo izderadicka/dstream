@@ -23,6 +23,8 @@ jobs:
         toolchain: nightly
         default: true
         components: llvm-tools-preview
+
+    - uses: Swatinem/rust-cache@v1
     
     - name: Install other dependencies
       run: |
