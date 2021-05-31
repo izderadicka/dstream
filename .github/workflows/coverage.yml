@@ -37,5 +37,5 @@ jobs:
       run: ./coverage.sh
 
     - name: Creates coverage badge
-      run: echo "Coverage is ${{ steps.coverage-calculation.coverage }}"
+      run: echo "Coverage is ${{ steps.coverage-calculation.outputs.coverage }}"
     
