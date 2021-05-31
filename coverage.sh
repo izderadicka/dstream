@@ -31,5 +31,8 @@ cargo profdata -- merge     -sparse coverage/coverage-*.profraw -o coverage/cove
 # cargo cov -- show     --use-color --ignore-filename-regex='/.cargo/registry' --ignore-filename-regex='/rustc/'     \
 # --instr-profile=json5format.profdata     --object target/debug/deps/dstream-0cacdb0ba3784a41  --show-instantiations --show-line-counts-or-regions Xdemangler=rustfil
 
-cargo cov -- export     --use-color --ignore-filename-regex='/.cargo/registry' --ignore-filename-regex='/rustc/' \
---instr-profile=coverage/coverage.profdata  $OBJECTS --summary-only | jq -r .data[0].totals.lines.percent
+COVERAGE=$(cargo cov -- export     --use-color --ignore-filename-regex='/.cargo/registry' --ignore-filename-regex='/rustc/' \
+--instr-profile=coverage/coverage.profdata  $OBJECTS --summary-only | jq -r .data[0].totals.lines.percent)
+
+echo "::set-output name=coverage::$COVERAGE"
+

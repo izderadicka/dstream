@@ -33,5 +33,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Calculate coverage
+      id: coverage-calculation
       run: ./coverage.sh
+
+    - name: Creates coverage badge
+      run: echo "Coverage is ${{ steps.coverage-calculation.coverage }}"
     
