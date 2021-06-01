@@ -44,11 +44,14 @@ jobs:
         echo "Coverage is ${{ steps.coverage-calculation.outputs.coverage }}"
         badge-maker coverage ${{ steps.coverage-calculation.outputs.coverage }} -c informational -l #282828 -s flat > coverage/badge.svg
 
+    - name: List files
+      run: ls -la coverage
+
     - name: Upload badge to gist
       uses: exuanbo/actions-deploy-gist@v1
       with:
         token: ${{ secrets.GIST_SECRET }}
         gist_id: 0b606e5000ddfa89bc0794a11ec67dc1
-        file_path: ./coverage/badge.svg
+        file_path: coverage/badge.svg
       
     
