@@ -30,7 +30,7 @@ jobs:
       run: |
         cargo install rustfilt 
         cargo install cargo-binutils
-        cargo install badge-maker --features cli
+        cargo install --git https://github.com/izderadicka/badge-maker.git --branch fix-serde-import --features cli
         sudo apt install jq
     
     - uses: actions/checkout@v2
