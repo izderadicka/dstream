@@ -30,7 +30,7 @@ cargo profdata -- merge     -sparse coverage/coverage-*.profraw -o coverage/cove
 
 cargo cov -- show  --ignore-filename-regex='/.cargo/registry' --ignore-filename-regex='/rustc/'     \
 --instr-profile=coverage/coverage.profdata $OBJECTS --show-instantiation-summary --show-branch-summary --show-region-summary \
---Xdemangler=rustfilt --format=html > coverage/report.html
+--Xdemangler=rustfilt --format=html >coverage/report.html
 
 COVERAGE=$(cargo cov -- export --ignore-filename-regex='/.cargo/registry' --ignore-filename-regex='/rustc/' \
 --instr-profile=coverage/coverage.profdata  $OBJECTS --summary-only | jq -r .data[0].totals.lines.percent)
