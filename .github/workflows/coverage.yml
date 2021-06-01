@@ -42,6 +42,13 @@ jobs:
     - name: Creates coverage badge
       run: | 
         echo "Coverage is ${{ steps.coverage-calculation.outputs.coverage }}"
-        badge-maker coverage ${{ steps.coverage-calculation.outputs.coverage }} -c informational -l #282828 -s flat
+        badge-maker coverage ${{ steps.coverage-calculation.outputs.coverage }} -c informational -l #282828 -s flat > coverage/badge.svg
+
+    - name: Upload to wiki
+      uses: SwiftDocOrg/github-wiki-publish-action@v1
+      with:
+        path: "coverage"
+      env:
+        GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }} 
       
     
